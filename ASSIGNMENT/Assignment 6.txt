@@ -1,0 +1,27 @@
+select *from cust;
+select *from movie;
+select *from invoice;
+
+create view cust_details as select PHONE_NO, FNAME, LNAME from cust;
+select *from cust_details;	
+
+create view cust_name as select fname, lname from cust;
+select *from cust_name;
+
+create view cust_issued_movie as select fname, lname from cust where cust_id in (select cust_id from invoice);
+select *from cust_issued_movie;
+
+create table oddeven
+(
+odd_no number(4), even_no number(4)
+);
+
+create sequence s1 start with 1 increment by 2 maxvalue 100;
+create sequence s2 start with 2 increment by 2 maxvalue 100;
+insert into oddeven values(s1.nextval, s2.nextval);
+
+create sequence s3 start with 10 increment by 1 maxvalue 100;
+
+insert into movie values (s3.nextval, 'superman', 'action', 'christopher reeve', '150');
+
+create index i1 on movie(price);

@@ -1,0 +1,39 @@
+create table Cust
+(
+cust_id varchar2(3) Primary key,
+lname varchar2(15),
+fname varchar2(15),
+area varchar2(2),
+phone_no number(8)
+);
+
+create table Movie
+(
+mv_no varchar(2) Primary key,
+title varchar2(25),
+type varchar2(10),
+star varchar2(25)
+);
+
+create table Invoice
+(
+Inv_no varchar2(3) Primary key,
+Mv_no varchar(2),
+Cust_id varchar2(3),
+Issue_date date,
+Return_date date
+);
+
+desc Cust;
+Desc Movie;
+Desc Invoice;
+
+
+alter table invoice add constraint C2 FOREIGN KEY (Cust_id) REFERENCES Cust(cust_id);
+
+alter table invoice add constraint C3 FOREIGN KEY (Mv_no) REFERENCES movie(mv_no);
+
+alter table cust modify (lname NOT NULL, fname NOT NULL);
+alter table movie modify (title NOT NULL, type NOT NULL);
+
+alter table movie add price number(8,2);

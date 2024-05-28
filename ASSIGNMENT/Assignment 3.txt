@@ -1,0 +1,61 @@
+select fname, lname from cust;
+
+select *from cust;
+
+select fname, area from cust;
+
+select type from movie;
+
+select 'The Invoice No. of Customer Id ' || CUST_ID || ' is ' || INV_NO || ' and Movie No. is ' || MV_NO from invoice;
+
+select CUST_ID || ' has taken Movie No. ' || MV_NO || ' on ' || ISSUE_DATE || ' and will return on ' || RETURN_DATE from invoice;
+
+update cust set PHONE_NO = '466389' where CUST_ID = 'a03';
+
+update invoice set ISSUE_DATE = '24-jul-93' where CUST_ID = 'a01';
+
+update movie set price = '250.00' where title = 'gone with the wind';
+
+delete invoice where INV_NO = 'i08';
+
+delete invoice where RETURN_DATE < '10-jul-93';
+
+update cust set area = 'vs' where cust_id = 'a05';
+
+update invoice set RETURN_DATE = '16-Aug-93' where INV_NO = 'I08';
+
+select fname from cust where fname like '_a%';
+
+select lname from cust where lname like 'S%' OR lname like 'J%';
+
+select area from cust where area like '_a';
+
+select fname, lname from cust where area like 'da' or area like 'mu' or area like 'gh';
+
+select fname, lname from cust where PHONE_NO > 5550000;
+
+select inv_no, mv_no, cust_id from invoice where ISSUE_DATE between '01-sep-93' and '30-sep-93';
+
+select inv_no, mv_no, cust_id from invoice where cust_id between 'a01' and 'a02';
+
+select title from movie where type = 'action' or type = 'comedy';
+
+select title from movie where price > 150 and price <= 200;
+
+select title, price*15 from movie where price > 150;
+
+select price*15 "NEW_PRICE" from movie where price > 150;
+
+select *from movie order by title;
+
+select title, type from movie where type <> 'horror';
+
+select price/(price-100) from movie where title='home alone';
+
+select *from cust where phone_no is null;
+
+select *from cust where lname=' ';
+
+select MV_NO, TITLE, type from movie where star like 'm%';
+
+select MV_NO, INV_NO from invoice where  INV_NO < 'i05';

@@ -1,0 +1,76 @@
+7.1. Create a user with your name and give permissions.
+
+CREATE USER sid IDENTIFIED BY Sid123;
+
+GRANT CONNECT TO sid;
+GRANT CONNECT, RESOURCE, DBA TO sid;
+
+7.2 Give select, insert, update permission on cust, movie table of user ‘scott’ to your user 
+account	
+
+GRANT SELECT, INSERT, UPDATE ON scott.cust TO sid;
+GRANT SELECT, INSERT, UPDATE ON scott.movie TO sid;
+
+
+7.3. Assign only insert permission on invoice table of user ‘scott’ to your current account.
+
+grant insert on scott.invoice to sid;
+
+7.4. Check the permission has properly granted using system tables.
+
+select *from user_tab_privs;
+
+7.5. Write a PL/SQL block to print the message “Welcome to PL/SQL” on the screen.
+
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('Welcome to PL/SQL');
+END;
+
+7.6. Write a PL/SQL block to find the summation of given two numeric values.
+
+declare
+
+x number(5);             
+y number(5);            
+z number(7);        
+
+begin
+
+x:=10;                 
+
+y:=20;                 
+
+z:=x+y;                 
+
+dbms_output.put_line('Sum is '||z); 
+end; 
+
+7.7 Write a PL/SQL to find out the customer id and name who has issued a movie and their 
+
+SELECT cust.cust_id, cust.fname, cust.lname 
+FROM cust 
+JOIN invoice ON invoice.cust_id = cust.cust_id 
+WHERE sysdate - invoice.return_date < 2;
+
+7.8. Write a PL/SQL block to find the summation of two numeric values using function 
+where two numeric values will be passed into function as parameters
+
+CREATE OR REPLACE FUNCTION calculate_sum(
+    num1 IN NUMBER,
+    num2 IN NUMBER
+) RETURN NUMBER
+IS
+    total NUMBER;
+BEGIN
+    total := num1 + num2;
+    RETURN total;
+END;
+
+
+
+DECLARE
+    result NUMBER;
+BEGIN
+    result := calculate_sum(10, 20);
+    DBMS_OUTPUT.PUT_LINE('The sum is: ' || result);
+END;
